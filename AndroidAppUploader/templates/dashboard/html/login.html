@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sign in</title>
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+      <link rel="stylesheet" href="{% static "css/signup.css" %}" />
+
+  </head>
+
+  <body class="text-center" style="margin-top: 10em">
+    {%  if error == True %}
+        <div class="container" style="width: 20em;">
+            <div class="alert alert-danger" role="alert">
+              Invalid credentials
+            </div>
+        </div>
+    {% endif %}
+      <h3>Sign in</h3>
+        <div class="container" style="width: 20em;">
+            <form id="login-form" method="post" action="/">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                <label for="inputPassword" class="sr-only" style="margin-top: 5px;">Password</label>
+                <input type="password" id="password" name="password" style="margin-top: 5px;" class="form-control" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" style="margin-top: 20px">Sign in</button>
+            </form>
+            <a class="button btn btn-lg btn-outline-dark btn-block" href="/signup/" style="margin-top: 0px">Sign up</a>
+
+        </div>
+  </body>
+</html>

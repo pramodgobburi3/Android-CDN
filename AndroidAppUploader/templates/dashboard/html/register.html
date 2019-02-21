@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sign up</title>
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+      <link rel="stylesheet" href="{% static "css/signup.css" %}" />
+
+  </head>
+
+  <body class="text-center" style="margin-top: 10em">
+    {%  if error == True %}
+        <div class="container" style="width: 20em;">
+            <div class="alert alert-danger" role="alert">
+              Invalid credentials
+            </div>
+        </div>
+    {% endif %}
+      <h3>Sign up</h3>
+        <div class="container" style="width: 20em;">
+            <form id="login-form" method="post" action="/signup/">
+                <input type="text" id="firstname" name="firstname" class="form-control" style="margin-top: 5px;" placeholder="First name" required autofocus>
+                <input type="text" id="lastname" name="lastname" class="form-control" style="margin-top: 5px;" placeholder="Last name" required>
+                <input type="email" id="email" name="email" class="form-control" style="margin-top: 5px;" placeholder="Email" required>
+                <input type="text" id="username" name="username" class="form-control" style="margin-top: 5px;" placeholder="Username" required>
+                <label for="inputPassword" class="sr-only" style="margin-top: 5px;">Password</label>
+                <input type="password" id="password" name="password" style="margin-top: 5px;" class="form-control" placeholder="Password" required>
+                <label for="inputPasswordVerify" class="sr-only" style="margin-top: 5px;">Password</label>
+                <input type="password" id="passwordConfirm" name="passwordConfirm" style="margin-top: 5px;" class="form-control" placeholder="Confirm password" required>
+                <button class="btn btn-lg btn-primary btn-block" style="margin-top: 20px">Sign up</button>
+            </form>
+            <a class="button btn btn-lg btn-outline-dark btn-block" href="/" style="margin-top: 0px">Sign in</a>
+
+        </div>
+  </body>
+</html>

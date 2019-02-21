@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+    <script src="{% static "js/dropzone.js" %}"></script>
+    <link rel="stylesheet" href="{% static "css/dropzone.css" %}" />
+    <link rel="stylesheet" href="{% static "css/dropzone-style.css" %}" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>App Uploader Dashboard</title>
+    <p href="/logout/" style="margin-top: 20px; align-content: right; text-align: right;margin-right: 70px"><a href="/logout/">Logout</a></p>
+</head>
+<body>
+    <div class="container">
+          <div class="page-header" id="banner">
+              <div class="col-lg-8 col-md-7 col-sm-6">
+                <h1>Hello, {{ user.first_name }}</h1>
+                <p class="lead">Upload your content here</p>
+                <form method="post" action="/upload/" class="dropzone needsclick" id="demo-upload" onsubmit="reload()">
+                    <input name="user_id" id="user_id" value="{{ user.id }}" hidden>
+                  <div class="dz-message needsclick">
+                    Drop files here or click to upload.<br />
+                  </div>
+
+                </form>
+              </div>
+
+              <h3 class="lead">Recent uploads: </h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="font-size: 18px; font-weight: bold;">Name</th>
+                      <th scope="col" style="font-size: 18px; font-weight: bold;">Date Uploaded</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for upload in uploads %}
+                        <tr>
+                            <td>{{ upload.file_name }}</td>
+                            <td>{{ upload.date_uploaded }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          </div>
+    </div>
+</body>
+<script>
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/uploads/');
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        console.log(message);
+    };
+
+    function reload() {
+        console.log("hello world");
+        location.reload();
+    }
+
+</script>
+</html>
